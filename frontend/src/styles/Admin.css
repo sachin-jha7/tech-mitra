@@ -1,0 +1,121 @@
+/* Section Container & Center Layout */
+
+.admin-section {
+  /* border: 1px solid blueviolet; */
+  min-height: 100vh;
+  padding: 120px 20px 20px;
+}
+
+.admin-section .section-content {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Header Text */
+.admin-section h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 0 6px 0;
+  color: #ffffff;
+}
+
+.welcome-text {
+  color: #a1a1aa;
+  font-size: 16px;
+  margin: 0;
+}
+
+/* Stats Cards Grid */
+.info-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.info {
+  background-color: #121214;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.info:hover {
+  border-color: #3f3f46;
+  transform: translateY(-2px);
+}
+
+.info p {
+  margin: 0;
+  color: #a1a1aa;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.info h4 {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #f97316; /* Theme Accent Color */
+}
+
+/* Administrative Controls Panel */
+.admin-control-panel {
+  background-color: #121214;
+  border: 1px solid #27272a;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.admin-control-panel h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #f97316;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Buttons Container */
+.btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.btns button {
+  background-color: #27272a;
+  color: #f4f4f5;
+  border: 1px solid #3f3f46;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btns button:hover {
+  background-color: #3f3f46;
+  border-color: #52525b;
+}
+
+.btns button.primary {
+  background-color: #f97316;
+  color: #000000;
+  border: none;
+}
+
+.btns button.primary:hover {
+  background-color: #ea580c;
+}

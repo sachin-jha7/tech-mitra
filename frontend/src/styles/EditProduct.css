@@ -1,0 +1,128 @@
+.edit-form {
+    position: fixed;
+    top: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 80vh;
+    max-width: 1020px;
+    border: 1px solid #27272a;
+    background-color: #18181b;
+    border-radius: 12px;
+    width: 90%;
+    padding: 20px;
+    overflow-y: auto;
+    transition: 0.3s;
+}
+
+.edit-form .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.edit-form .header h2 {
+    font-size: 20px;
+}
+
+.edit-form .header button {
+    background: transparent;
+    border: none;
+    color: #a1a1aa;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.edit-form .header button:hover {
+    background-color: #27272a;
+    color: #ffffff;
+}
+
+.edit-form-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.edit-form-wrapper img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.edit-form-wrapper .form-element {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.edit-form-wrapper .form-element .edit-img {
+    border: 2px dashed #27272a;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.3s;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.form-element .edit-img:hover {
+    border-color: #f97316;
+    cursor: pointer;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.form-element label {
+    font-size: 15px;
+    font-weight: 500;
+    color: #a1a1aa;
+}
+
+.form-element input {
+    width: 300px;
+    background-color: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #f4f4f5;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-element input:focus {
+    border-color: #f97316;
+}
+
+.edit-form-wrapper .edit-btn {
+    margin-top: 20px;
+    padding: 7px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    background: transparent;
+    border: 2px solid #27272a;
+    color: #f4f4f5;
+    transition: 0.3s;
+}
+
+.edit-form-wrapper .edit-btn:hover {
+    background-color: #f97316;
+    color: #000000;
+}
+
+.form-grid h3 {
+    margin-right: auto;
+    text-transform: uppercase;
+    color: #f97316;
+    margin-top: 10px;
+}

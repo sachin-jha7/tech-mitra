@@ -1,0 +1,187 @@
+/* Modal Overlay & Card Container */
+
+
+.add-product-container {
+    position: fixed;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 1050px;
+    max-height: 80vh;
+    background-color: #121214;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    /* overflow: hidden; */
+    /* border: 1px solid chartreuse; */
+    transition: top 0.3s ease-in-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #27272a;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 20px;
+    color: #ffffff;
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #a1a1aa;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.close-btn:hover {
+    background-color: #27272a;
+    color: #ffffff;
+}
+
+/* Form Inner Layout */
+.product-form {
+    padding: 24px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #a1a1aa;
+}
+
+.form-group input,
+.form-group select {
+    background-color: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #f4f4f5;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #f97316;
+}
+
+/* Custom Image Upload Box */
+.image-upload-wrapper input[type="file"] {
+    display: none;
+}
+
+.upload-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px dashed #27272a;
+    border-radius: 8px;
+    height: 110px;
+    cursor: pointer;
+    background-color: #18181b;
+    transition: border-color 0.2s;
+}
+
+.upload-box:hover {
+    border-color: #f97316;
+}
+
+.upload-box span {
+    color: #a1a1aa;
+    font-size: 0.875rem;
+}
+
+.preview-img {
+    max-height: 90px;
+    object-fit: contain;
+    border-radius: 6px;
+}
+
+/* Dynamic Specifications Section */
+.specifications-section {
+    border-top: 1px solid #27272a;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.specifications-section h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #f97316;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Action Buttons */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid #27272a;
+    padding-top: 16px;
+}
+
+.btn-cancel {
+    background-color: transparent;
+    border: 1px solid #3f3f46;
+    color: #f4f4f5;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-cancel:hover {
+    background-color: #27272a;
+}
+
+.btn-submit {
+    background-color: #f97316;
+    border: none;
+    color: #000000;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-submit:hover {
+    background-color: #ea580c;
+}

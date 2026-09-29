@@ -1,0 +1,172 @@
+/* Order panel */
+
+
+/* AI code */
+
+/* Container & Glassmorphism Modal */
+.order-container {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1050px;
+    max-height: 80vh;
+    background-color: #18181b;
+    border: 1px solid #27272a;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+    color: #f4f4f5;
+    transition: top 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    /* z-index: 1000; */
+}
+
+.order-container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.order-container .header h2 {
+    font-size: 20px;
+}
+
+.order-container .header button {
+    background: transparent;
+    border: none;
+    color: #a1a1aa;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+
+.order-container .header button:hover {
+    background-color: #27272a;
+    color: #ffffff;
+}
+
+.order-list {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-right: 4px;
+}
+
+/* CSS Grid for Perfect Header-Cell Alignment */
+.parameters,
+.order-item {
+    display: grid;
+    grid-template-columns: 2fr 0.8fr 1fr 1.8fr 1fr 2fr 1.2fr;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Header Styling Fix */
+.parameters {
+    background-color: #27272a;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: #a1a1aa;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: sticky;
+    top: 0;
+}
+
+/* Order Rows */
+.order-item {
+    background-color: #09090b;
+    border: 1px solid #27272a;
+    padding: 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+/* Product Info Cell */
+.product-cell {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.product-cell img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 6px;
+    background-color: #27272a;
+}
+
+.product-cell p {
+    font-weight: 500;
+    margin: 0;
+    color: #f4f4f5;
+    word-break: break-word;
+}
+
+
+/* Address Expandable Text */
+.text-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.content.collapsed {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: #d4d4d8;
+    font-size: 0.85rem;
+}
+
+.content.expanded {
+    color: #d4d4d8;
+    font-size: 0.85rem;
+}
+
+.text-box button {
+    background: none;
+    border: none;
+    color: #3b82f6;
+    font-size: 0.75rem;
+    cursor: pointer;
+    text-align: left;
+    padding: 0;
+    margin-top: 2px;
+}
+
+.text-box button:hover {
+    text-decoration: underline;
+}
+
+/* Select Dropdown Styling */
+.status-select {
+    background-color: #27272a;
+    color: #f4f4f5;
+    border: 1px solid #3f3f46;
+    padding: 8px;
+    border-radius: 6px;
+    outline: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+
+
+.status-select:focus {
+    border-color: #3b82f6;
+}
