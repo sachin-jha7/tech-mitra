@@ -2,8 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 const app = express();
-import {product} from "../data.js";
-import productModel from "./models/product.js";
+
 
 import indexRoute from "./routes/index-route.js";
 import authRoutes from "./routes/auth-routes.js";
