@@ -165,6 +165,12 @@ export default function AddProduct({ isAddProductOpen, setIsAddProductOpen }) {
 
             const resData = await res.json();
             // console.log(result);
+            if(resData == "Unauthorized") {
+                setNotification({msg: resData, type: "error"});
+            }
+            if(resData == "Access denied.") {
+                setNotification({msg: resData, type: "error"});
+            }
             if(resData == "No file") {
                 setNotification({msg: resData, type: "error"})
             }
