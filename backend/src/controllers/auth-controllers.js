@@ -42,7 +42,7 @@ const signup = async (req, res) => {
         }
         const otp = generateOtp();
         const html = returnHtml(otp);
-        sendMail(email, "OTP Verification", html);
+        await sendMail(email, "OTP Verification", html);
         saveOTP(email, otp);
         return res.status(200).json({ message: "An otp has been sent to your email", userInfo: { name, email, password } });
 
