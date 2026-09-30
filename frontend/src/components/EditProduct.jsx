@@ -5,7 +5,8 @@ import { faX } from "@fortawesome/free-solid-svg-icons";
 
 export default function EditProduct({ isEditFormOpen, setIsEditFormOpen, productData }) {
     if (!productData) {
-        return <p style={{ textAlign: "center", padding: "120px 0 120px 0" }}>Loading products...</p>;
+        return <p style={isEditFormOpen ? { display: "block", textAlign: "center", padding: "120px 0 120px 0" } :
+         { display: "none", textAlign: "center", padding: "120px 0 120px 0" }}>Loading products...</p>;
     }
     function formatSpecificationName(key) {
         return key

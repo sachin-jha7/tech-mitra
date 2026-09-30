@@ -9,11 +9,11 @@ export default function ManageProducts({ isManageProductOpen, setIsManageProduct
     const { result, loading } = useContext(DataContext);
     const [isEditFormOpen, setIsEditFormOpen] = useState(false);
     const [productData, setProductData] = useState(null);
-    // if (loading || result === null) {
-    //     return <p style={isManageProductOpen ? { top: "15%", textAlign: "center", padding: "120px 0 120px 0" }
-    //         : { top: "100%", textAlign: "center", padding: "120px 0 120px 0" }
-    //     }>Loading products...</p>;
-    // }
+    if (loading || result === null) {
+        return <p style={isManageProductOpen ? { display: "block", textAlign: "center", padding: "120px 0 120px 0" }
+            : { display: "none", textAlign: "center", padding: "120px 0 120px 0" }
+        }>Loading products...</p>;
+    }
     const allProducts = result?.allProducts;
     // const uniqueCategories = [...new Set(allProducts.map(p => p.category))];
     const openEditForm = (item) => {

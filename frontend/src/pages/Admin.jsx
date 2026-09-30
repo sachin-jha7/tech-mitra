@@ -12,9 +12,9 @@ export default function Admin() {
     const [isAddProductOpen, setIsAddProductOpen] = useState(false);
     const [isManageProductOpen, setIsManageProductOpen] = useState(false);
     const { notification, setNotification, result } = useContext(DataContext);
-    // if (!result) {
-    //     return <p style={{ textAlign: "center", padding: "120px 0 120px 0" }}>Loading...</p>;
-    // }
+    if (!result) {
+        return <p style={{ textAlign: "center", padding: "120px 0 120px 0" }}>Loading...</p>;
+    }
     const closeNotification = () => {
         setNotification(null);
     }

@@ -78,7 +78,7 @@ const verify_otp = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             partitioned: process.env.NODE_ENV === "production",
             path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
@@ -131,7 +131,7 @@ const login = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             secure: process.env.NODE_ENV === "production",
-            sameSite: "lax",
+            sameSite: "none",
             partitioned: process.env.NODE_ENV === "production",
             path: "/",
             maxAge: 7 * 24 * 60 * 60 * 1000
@@ -153,7 +153,7 @@ const logout = (req, res) => {
     res.clearCookie("token", {
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: "none",
         partitioned: process.env.NODE_ENV === "production",
         path: "/"
     }).json("You have successfully logged out.");
