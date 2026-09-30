@@ -194,16 +194,7 @@ export default function AddProduct({ isAddProductOpen, setIsAddProductOpen }) {
     return (
 
         <div style={isAddProductOpen ? { top: "15%" } : { top: "100%" }} className="add-product-container">
-            {
-                notification ? (
-                    <div style={notification.type == "error" ?
-                        { background: "rgba(177, 20, 20, 0.2)", border: "1px solid rgba(216, 5, 5, 0.2)" } : {}}
-                        className="notification-container">
-                        <p className="msg">{notification.msg}</p>
-                        <button onClick={closeNotification}><FontAwesomeIcon icon={faX} /></button>
-                    </div>
-                ) : null
-            }
+            
             <div className="modal-header">
                 <h3>Add New Product</h3>
                 <button className="close-btn" onClick={() => setIsAddProductOpen(false)}>
