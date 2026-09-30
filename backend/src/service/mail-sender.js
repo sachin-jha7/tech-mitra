@@ -10,10 +10,22 @@ const transporter = nodemailer.createTransport({
     }
 });
 
-export const sendMail = (to, sub, msg) => {
-    transporter.sendMail({
-        to: to,
-        subject: sub,
-        html: msg
-    });
+export const sendMail = async (to, sub, msg) => {
+    // transporter.sendMail({
+    //     to: to,
+    //     subject: sub,
+    //     html: msg
+    // });
+    try {
+        const info = await transporter.sendMail({
+            from: "TechMitra",
+            to: to,
+            subject: sub,
+            html: msg
+        });
+        return info;
+    } catch(error) {
+        console.error("Nodemailer failed to send email:", error.message);
+        throw error;
+    }
 }
