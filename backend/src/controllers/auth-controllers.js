@@ -95,7 +95,7 @@ const verify_otp = async (req, res) => {
     }
 }
 
-const resend_otp = (req, res) => {
+const resend_otp = async (req, res) => {
     const otp = generateOtp();
     let { email } = req.body;
     deleteOTP(email);
