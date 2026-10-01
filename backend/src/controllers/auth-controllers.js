@@ -19,6 +19,7 @@ const generateOtp = () => {
         otp = otp * 10 + Math.floor(Math.random() * 10);
     }
     return otp;
+    // return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 const signup = async (req, res) => {
@@ -43,7 +44,7 @@ const signup = async (req, res) => {
         const otp = generateOtp();
         const html = returnHtml(otp);
         await sendMail(email, "OTP Verification", html);
-        saveOTP(email, otp);
+        await saveOTP(email, otp);
         return res.status(200).json({ message: "An otp has been sent to your email", userInfo: { name, email, password } });
 
         // const redis_upstash_URL = "redis://default:2fGH[#f69K]LM@otp-service.upstash.io:6379"
@@ -99,8 +100,8 @@ const resend_otp = (req, res) => {
     let { email } = req.body;
     deleteOTP(email);
     const html = returnHtml(otp);
-    sendMail(email, "OTP Verification", html);
-    saveOTP(email, otp);
+    await sendMail(email, "OTP Verification", html);
+    await saveOTP(email, otp);
     return res.status(200).json("An otp has been sent to your email");
 }
 
