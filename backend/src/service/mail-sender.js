@@ -1,9 +1,9 @@
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
-    secure: true,
+    secure: false,
     host: 'smtp.gmail.com',
-    port: 465,
+    port: 587,
     auth: {
         user: process.env.NODEMAILER_EMAIL,
         pass: process.env.NODEMAILER_PASS
@@ -18,7 +18,7 @@ export const sendMail = async (to, sub, msg) => {
     // });
     try {
         const info = await transporter.sendMail({
-            from: "TechMitra",
+            from: `"TechMitra Support" <${process.env.NODEMAILER_EMAIL}>`,
             to: to,
             subject: sub,
             html: msg
@@ -26,6 +26,9 @@ export const sendMail = async (to, sub, msg) => {
         return info;
     } catch(error) {
         console.error("Nodemailer failed to send email:", error.message);
+        console.error("code:", error.code);
+        console.error("response:", error.response);
+        console.error("responseCode:", error.responseCode);
         throw error;
     }
 }
