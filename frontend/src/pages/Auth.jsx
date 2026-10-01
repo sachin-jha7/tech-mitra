@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react"
 import { DataContext } from "../context/DataContext";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faX } from "@fortawesome/free-solid-svg-icons";
+import { faX, faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 
 export default function Auth() {
 
@@ -11,6 +11,9 @@ export default function Auth() {
     const { notification, setNotification, setResult, result } = useContext(DataContext);
     const [userDataForOtpForm, setUserDataForOtpForm] = useState(null);
     const [seconds, setSeconds] = useState(300);
+    const [loginProcess, setLoginProcess] = useState(false);
+    const [signupProcess, setSignupProcess] = useState(false);
+    const [otpProcess, setOtpProcess] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -39,6 +42,7 @@ export default function Auth() {
             password: e.target[1].value
         }
         // console.log(result)
+        setLoginProcess(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/login`, {
                 method: "POST",
@@ -50,7 +54,7 @@ export default function Auth() {
             });
             const data = await res.json();
             // console.log(data);
-
+            setLoginProcess(false);
             // e.target[0].value = "";
             e.target[1].value = "";
             if (data == "Invalid email format.") {
@@ -82,7 +86,7 @@ export default function Auth() {
             password: e.target[2].value
         }
         // console.log(newUser)
-
+        setSignupProcess(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`, {
                 method: "POST",
@@ -94,6 +98,7 @@ export default function Auth() {
             });
             const data = await res.json();
             // console.log(data);
+            setSignupProcess(false);
             e.target[2].value = "";
             if (data == "Invalid email format.") {
                 setNotification({ msg: data, type: "error" });
@@ -105,7 +110,7 @@ export default function Auth() {
                 setNotification({ msg: data, type: "error" });
             }
             if (data.message == "An otp has been sent to your email") {
-                console.log(newUser);
+                // console.log(newUser);
                 setUserDataForOtpForm(data.userInfo);
                 setFormMode("idle");
             }
@@ -126,7 +131,7 @@ export default function Auth() {
         // setUserDataForOtpForm({ ...userDataForOtpForm, otp: otp });
         // console.log(userDataForOtpForm)
         // const userDetails = {userDataForOtpForm,}
-
+        setOtpProcess(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/auth/verify-otp`, {
                 method: "POST",
@@ -137,6 +142,7 @@ export default function Auth() {
                 credentials: "include"
             });
             const data = await res.json();
+            setOtpProcess(false);
             if (data == "Invalid OTP") {
                 setNotification({ msg: data, type: "error" });
             }
@@ -190,7 +196,15 @@ export default function Auth() {
                             placeholder="Enter password..." required />
                         <button type="button" onClick={() => setEyeOpen(!eyeOpen)} className="hide-show-pswd-btn">{eyeOpen ? "show" : "hide"}</button>
                     </div>
-                    <button className="auth-submit-btn">Submit</button>
+                    {
+                        loginProcess ? (
+                            <button type="button" className="auth-submit-btn">Processing
+                                <FontAwesomeIcon className="force-spin" icon={faCircleNotch} />
+                            </button>
+                        ) : (
+                            <button className="auth-submit-btn">Login</button>
+                        )
+                    }
                     <p>Don't have an account? <button type="button"
                         onClick={() => setFormMode("signup")} className="form-opener" >Signup</button></p>
 
@@ -204,7 +218,15 @@ export default function Auth() {
                             placeholder="Enter password..." required />
                         <button type="button" onClick={() => setEyeOpen(!eyeOpen)} className="hide-show-pswd-btn">{eyeOpen ? "show" : "hide"}</button>
                     </div>
-                    <button className="auth-submit-btn">Create</button>
+                    {
+                        signupProcess ? (
+                            <button type="button" className="auth-submit-btn">Processing
+                                <FontAwesomeIcon className="force-spin" icon={faCircleNotch} />
+                            </button>
+                        ) : (
+                            <button className="auth-submit-btn">Create</button>
+                        )
+                    }
                     <p>Already have an account? <button type="button"
                         onClick={() => setFormMode("login")} className="form-opener">Login</button></p>
                 </form>
@@ -212,14 +234,24 @@ export default function Auth() {
                     userDataForOtpForm ? (
                         <form onSubmit={(e) => verify_otp(e)}>
                             <h2>Verify your email</h2>
-                            <p style={{ whiteSpace: "wrap" }}>We sent a 6-digit verification code to<br /> [{userDataForOtpForm.email}].
+                            <p style={{ whiteSpace: "wrap", lineHeight: "1.4" }}>We sent a 6-digit verification code to<br /> [{userDataForOtpForm.email}].
                                 <br />Enter it below to complete your registration.
                             </p>
-                            <label htmlFor="otp">Verification Code</label>
-                            <input type="number" placeholder="Enter 6-digit code" />
+                            <div style={{ display: "flex", flexDirection: "column", gap: "5px" }}>
+                                <label htmlFor="otp">Verification Code</label>
+                                <input type="number" placeholder="Enter 6-digit code" required />
+                            </div>
                             <p><button type="button" disabled={seconds <= 0 ? false : true} onClick={() => resend_otp(userDataForOtpForm.email)}
                                 className="resend-otp-btn">Resend</button> code in {formatTime(seconds)} seconds</p>
-                            <button className="auth-submit-btn">Submit</button>
+                            {
+                                otpProcess ? (
+                                    <button type="button" className="auth-submit-btn">Processing
+                                        <FontAwesomeIcon className="force-spin" icon={faCircleNotch} />
+                                    </button>
+                                ) : (
+                                    <button className="auth-submit-btn">Submit</button>
+                                )
+                            }
                         </form>
                     ) : null
                 }
