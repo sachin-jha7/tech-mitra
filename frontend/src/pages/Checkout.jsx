@@ -66,7 +66,7 @@ export default function Checkout() {
 
     const placeOrder = async (e) => {
         e.preventDefault();
-        console.log(e.target[0].value)
+        // console.log(e.target[0].value)
         const deliveryAddress = e.target[0].value;
         const orderDetails = {
             deliveryAddress,
@@ -87,7 +87,7 @@ export default function Checkout() {
             credentials: "include"
         });
         const data = await res.json();
-        console.log(data);
+        // console.log(data);
         if (data == "Unauthorized") {
             setNotification({ msg: "You're not logged in.", type: "error" });
             return;
@@ -232,18 +232,12 @@ export default function Checkout() {
                         </div>
                         {
                             paymentOrder ? (
-                                null
+                                <button type="button" onClick={handlePayment}>Pay with Razorpay</button>
                             ) : (
                                 <button>Place Order</button>
                             )
                         }
                     </form>
-                    {
-                        paymentOrder ? (
-                            <button onClick={handlePayment}>Pay with Razorpay</button>
-                        ) : null
-                    }
-                    
                 </div>
             </div>
         </div>
