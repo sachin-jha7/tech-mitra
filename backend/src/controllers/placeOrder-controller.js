@@ -14,7 +14,7 @@ const createOrder = async (req, res) => {
         return res.status(401).json("Unauthorized");
     }
     try {
-        const decoded = await jwt.sign(token, process.env.JWT_SECRET);
+        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
         req.user = decoded;
         // intialize the payment
         const productArray = req.body.productArray;
@@ -41,9 +41,10 @@ const createOrder = async (req, res) => {
         }
     } catch (error) {
         console.log("Error verifying user", error);
-        if (error.name === "TokenExpiredError") {
-            return res.status(401).json("Unauthorized");
-        }
+        if (error.name === "TokenExpiredError" || error.name === "JsonWebTokenError") {
+        return res.status(401).json("Unauthorized");
+    }
+    return res.status(500).json("Internal server error");
     }
 }
 
