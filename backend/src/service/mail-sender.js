@@ -4,11 +4,12 @@ const transporter = nodemailer.createTransport({
     host: 'smtp.gmail.com',
     port: 465,
     secure: true,
+    family: 4,
     auth: {
         user: process.env.NODEMAILER_EMAIL,
         pass: process.env.NODEMAILER_PASS
     },
-    connectionTimeout: 10000
+    connectionTimeout: 15000
 });
 
 export const sendMail = async (to, sub, msg) => {
