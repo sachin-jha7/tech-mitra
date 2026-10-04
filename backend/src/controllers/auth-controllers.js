@@ -41,11 +41,32 @@ const signup = async (req, res) => {
         if (userExists) {
             return res.status(409).json("User already exists");
         }
-        const otp = generateOtp();
-        const html = returnHtml(otp);
-        await sendMail(email, "OTP Verification", html);
-        await saveOTP(email, otp);
-        return res.status(200).json({ message: "An otp has been sent to your email", userInfo: { name, email, password } });
+        // const otp = generateOtp();
+        // const html = returnHtml(otp);
+        // await sendMail(email, "OTP Verification", html);
+        // await saveOTP(email, otp);
+        // return res.status(200).json({ message: "An otp has been sent to your email", userInfo: { name, email, password } });
+        const adminEmailList = ["sachin@async.com", "sachin@techMitra.com", "techmitra50@gmail.com"];
+        let role = "user";
+        if (adminEmailList.includes(email)) {
+            role = "admin";
+        }
+        const hashedPassword = await bcrypt.hash(password, 10);
+        const newUser = await userModel.create({ name, email, password: hashedPassword, role });
+        const token = generateToken(newUser._id);
+        res.cookie("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "lax",
+            partitioned: process.env.NODE_ENV === "production",
+            path: "/",
+            maxAge: 7 * 24 * 60 * 60 * 1000
+        });
+        if (role === "admin") {
+            res.status(200).json({ message: "Admin Registered Successfully", name, role });
+        } else {
+            res.status(200).json({ message: "User Registered Successfully", name, role });
+        }
 
         // const redis_upstash_URL = "redis://default:2fGH[#f69K]LM@otp-service.upstash.io:6379"
 
