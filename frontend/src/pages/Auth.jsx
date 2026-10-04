@@ -114,6 +114,13 @@ export default function Auth() {
                 setUserDataForOtpForm(data.userInfo);
                 setFormMode("idle");
             }
+            if (data.message == "Admin Registered Successfully") {
+                setResult({ ...result, userInfo: data.name, userRole: data.role });
+                navigate('/admin');
+            } else if (data.message == "User Registered Successfully") {
+                setResult({ ...result, userInfo: data.name, userRole: data.role });
+                navigate('/');
+            }
 
         } catch (error) {
             console.log("Error fetching backend:", error);
